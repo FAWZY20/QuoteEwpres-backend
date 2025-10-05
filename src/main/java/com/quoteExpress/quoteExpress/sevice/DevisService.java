@@ -45,8 +45,7 @@ public class DevisService implements DevisControler {
     @Override
     public ResponseEntity getDevis(Long devisId) throws Exception {
         try {
-            devisRepository.findById(devisId);
-            return ResponseEntity.ok(devisId);
+            return ResponseEntity.ok(devisRepository.findById(devisId));
         }catch (Exception e){
             throw new Exception(e);
         }
@@ -89,7 +88,7 @@ public class DevisService implements DevisControler {
             Devis lastdevis = devisRepository.findDevisById(userId);
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDateTime dateDevis = LocalDate.parse(date.get("dateDevis"), formatter).atStartOfDay();
+            LocalDate dateDevis = LocalDate.from(LocalDate.parse(date.get("dateDevis"), formatter).atStartOfDay());
 
             lastdevis.setDateDevis(dateDevis);
             devisRepository.save(lastdevis);

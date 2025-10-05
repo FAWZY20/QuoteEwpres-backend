@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +21,7 @@ public class Devis {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
+    @JoinColumn(name = "utilisateurid")
     private User users;
     
     @Column(name = "clientname")
@@ -42,7 +43,7 @@ public class Devis {
     private String clientTel;
 
     @Column(name = "datedevis")
-    private LocalDateTime dateDevis;
+    private LocalDate dateDevis;
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name = "listproduct", columnDefinition = "jsonb")
@@ -61,7 +62,7 @@ public class Devis {
     private String totalTtc;
 
     public Devis(Long id, User user, String clientName, String clientAdress, String clientZip, String clientCity,
-                 String clientSiret, String clientTel, LocalDateTime dateDevis, List<Product> listProduct,
+                 String clientSiret, String clientTel, LocalDate dateDevis, List<Product> listProduct,
                  String info, String totalHt, String totalTva, String totalTtc) {
         this.id = id;
         this.users = users;
@@ -137,11 +138,11 @@ public class Devis {
         this.clientTel = clientTel;
     }
 
-    public LocalDateTime getDateDevis() {
+    public LocalDate getDateDevis() {
         return dateDevis;
     }
 
-    public void setDateDevis(LocalDateTime dateDevis) {
+    public void setDateDevis(LocalDate dateDevis) {
         this.dateDevis = dateDevis;
     }
 
