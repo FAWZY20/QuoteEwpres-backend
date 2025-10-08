@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -53,17 +54,17 @@ public class Devis {
     private String info;
 
     @Column(name = "totalht")
-    private String totalHt;
+    private BigDecimal totalHt;
 
     @Column(name = "totaltva")
-    private String totalTva;
+    private BigDecimal  totalTva;
 
     @Column(name = "totalttc")
-    private String totalTtc;
+    private BigDecimal  totalTtc;
 
     public Devis(Long id, User user, String clientName, String clientAdress, String clientZip, String clientCity,
                  String clientSiret, String clientTel, LocalDate dateDevis, List<Product> listProduct,
-                 String info, String totalHt, String totalTva, String totalTtc) {
+                 String info, BigDecimal  totalHt, BigDecimal  totalTva, BigDecimal  totalTtc) {
         this.id = id;
         this.users = users;
         this.clientName = clientName;
@@ -162,27 +163,27 @@ public class Devis {
         this.info = info;
     }
 
-    public String getTotalHt() {
+    public BigDecimal  getTotalHt() {
         return totalHt;
     }
 
-    public void setTotalHt(String totalHt) {
+    public void setTotalHt(BigDecimal  totalHt) {
         this.totalHt = totalHt;
     }
 
-    public String getTotalTva() {
+    public BigDecimal  getTotalTva() {
         return totalTva;
     }
 
-    public void setTotalTva(String totalTva) {
+    public void setTotalTva(BigDecimal  totalTva) {
         this.totalTva = totalTva;
     }
 
-    public String getTotalTtc() {
+    public BigDecimal  getTotalTtc() {
         return totalTtc;
     }
 
-    public void setTotalTtc(String totalTtc) {
+    public void setTotalTtc(BigDecimal  totalTtc) {
         this.totalTtc = totalTtc;
     }
 }

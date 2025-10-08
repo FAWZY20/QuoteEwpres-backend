@@ -19,4 +19,10 @@ public interface DevisRepository extends JpaRepository<Devis,Long> {
 
     @Query("SELECT COUNT(d) FROM Devis d WHERE d.users.id = :utilisateurId AND d.dateDevis BETWEEN :monthStart AND :monthEnd")
     long countDevisMonth(@Param("utilisateurId")Long userId, @Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
+
+    @Query("SELECT COALESCE(SUM(d.totalTtc), 0) FROM Devis d WHERE d.users.id = :utilisateurId AND d.dateDevis BETWEEN :monthStart AND :monthEnd")
+    long sumDevisMonth(@Param("utilisateurId")Long userId, @Param("monthStart") LocalDate monthStart, @Param("monthEnd") LocalDate monthEnd);
+
+    @Query("SELECT COALESCE(SUM(d.totalTtc), 0) FROM Devis d WHERE d.users.id = :utilisateurId AND d.dateDevis = :date")
+    Long sumTotalDevisToday(@Param("utilisateurId") Long clientId, @Param("date") LocalDate date);
 }

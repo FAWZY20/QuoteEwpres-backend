@@ -10,9 +10,9 @@ CREATE TABLE devis (
     dateDevis DATE,
     listProduct JSONB,
     info TEXT,
-    totalHt VARCHAR(50),
-    totalTva VARCHAR(50),
-    totalTtc VARCHAR(50),
+    totalHt NUMERIC(15,2),
+    totalTva NUMERIC(15,2),
+    totalTtc NUMERIC(15,2),
 
   CONSTRAINT fk_user
         FOREIGN KEY(utilisateurid)
