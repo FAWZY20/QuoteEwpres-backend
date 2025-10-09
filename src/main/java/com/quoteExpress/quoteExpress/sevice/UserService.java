@@ -45,10 +45,14 @@ import java.util.Map;
     @Override
     public ResponseEntity getUser(Long userID) throws Exception {
         try {
-            userRepository.findUserById(userID);
-            return ResponseEntity.ok("l'utilisateur a etait trouver");
+            User user = userRepository.findUserById(userID);
+            if (user != null){
+                return ResponseEntity.ok(user);
+            }else {
+                return ResponseEntity.ofNullable("aucun utilisteur trouver");
+            }
         }catch (Exception e){
-            throw new Exception("l'utilisateur n'a pas etait trouver");
+            throw new Exception("une erreur ces produit lors de la recherche de l'tuilisateur", e);
         }
     }
 
