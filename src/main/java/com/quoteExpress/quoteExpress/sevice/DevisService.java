@@ -52,6 +52,16 @@ public class DevisService implements DevisControler {
     }
 
     @Override
+    public ResponseEntity getListDevisByUserId(Long userId) throws Exception {
+        try {
+            List<Devis> devis = devisRepository.findDevisByUserId(userId);
+            return ResponseEntity.ok(devis);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public ResponseEntity deleteDevis(Long devisId) throws Exception {
         try {
             devisRepository.deleteById(devisId);

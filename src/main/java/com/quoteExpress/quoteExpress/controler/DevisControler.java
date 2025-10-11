@@ -16,7 +16,10 @@ public interface DevisControler {
     ResponseEntity addDevis(@PathVariable("userId") Long userId,@RequestBody Devis devis) throws Exception;
 
     @GetMapping("/{devisId}")
-    ResponseEntity getDevis(@PathVariable Long devisId) throws Exception;
+    ResponseEntity getDevis(@PathVariable("devisId") Long devisId) throws Exception;
+
+    @GetMapping("/list/{userId}")
+    ResponseEntity getListDevisByUserId(@PathVariable("userId") Long userId) throws Exception;
 
     @DeleteMapping("/{devisId}")
     ResponseEntity deleteDevis(@PathVariable Long devisId) throws Exception;

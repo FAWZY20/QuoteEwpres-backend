@@ -29,4 +29,5 @@ public interface UserControler {
 
     @PatchMapping("/{userId}")
     ResponseEntity updateUser(@PathVariable("userId") Long userid, @RequestBody User user) throws RuntimeException;
+
 }

@@ -33,9 +33,9 @@ import java.util.Map;
             if (userRepository.findUserByEmail(user.getEmail()) == null){
                 user.setPassword(encodePassword.enccodePwd(user.getPassword()));
                 userRepository.save(user);
-                return ResponseEntity.ok("l'utilisateur a etait ajouter");
+                return ResponseEntity.ok(true);
             } else {
-                return ResponseEntity.ok("l'utilisateur existe deja");
+                return ResponseEntity.ok(false);
             }
         }catch (Exception e){
             throw new Exception("l'utilisateur n'a pas pu etre ajouter", e);
@@ -121,6 +121,5 @@ import java.util.Map;
             throw new RuntimeException("une erreur et survenu l'utilisateur n'a pas pu etre modifier", e);
         }
     }
-
 
 }

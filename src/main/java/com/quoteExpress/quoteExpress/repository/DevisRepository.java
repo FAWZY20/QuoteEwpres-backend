@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface DevisRepository extends JpaRepository<Devis,Long> {
@@ -25,4 +26,7 @@ public interface DevisRepository extends JpaRepository<Devis,Long> {
 
     @Query("SELECT COALESCE(SUM(d.totalTtc), 0) FROM Devis d WHERE d.users.id = :utilisateurId AND d.dateDevis = :date")
     Long sumTotalDevisToday(@Param("utilisateurId") Long clientId, @Param("date") LocalDate date);
+
+    @Query("SELECT d FROM Devis d WHERE d.users.id = :utilisateurId ")
+    List<Devis> findDevisByUserId(@Param("utilisateurId") Long userId);
 }
